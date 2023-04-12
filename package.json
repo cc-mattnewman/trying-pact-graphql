@@ -1,0 +1,46 @@
+{
+  "name": "graphql-pact-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf pacts",
+    "test": "npm run clean && npm run test:consumer",
+    "test:consumer": "nyc --reporter=text-summary mocha *.spec.js"
+  },
+  "keywords": [
+    "graphql",
+    "pact",
+    "contract-testing"
+  ],
+  "author": "Matt Fellows <matt.fellows@onegeek.com.au>",
+  "license": "MIT",
+  "devDependencies": {
+    "@pact-foundation/pact": "^11.0.2",
+    "@pact-foundation/pact-core": "^13.13.6",
+    "@types/chai": "^4.3.3",
+    "@types/chai-as-promised": "7.1.5",
+    "@types/express-graphql": "0.8.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^8.0.24",
+    "absolute-version": "1.0.1",
+    "body-parser": "^1.20.0",
+    "chai": "^4.3.6",
+    "chai-as-promised": "^7.1.1",
+    "lodash": "^4.17.21",
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.4",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.7.10",
+    "graphql": "^16.6.0",
+    "graphql-tools": "^8.3.19",
+    "node-fetch": "^3.3.1"
+  }
+}
