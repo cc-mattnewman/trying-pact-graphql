@@ -4,13 +4,15 @@ import {
 } from "@apollo/client/core/core.cjs";
 import gql from "graphql-tag"
 import Dummy from "./dummy.js";
+import { HttpLink } from "@apollo/client/link/http/http.cjs";
+import fetch from 'cross-fetch';
 
 class GraphQLHeroService {
 
     constructor(baseUrl, port) {
         this.client = new ApolloClient({
-            uri: `${baseUrl}:${port}/graphql`,
-            cache: new InMemoryCache()
+            cache: new InMemoryCache(),
+            link: new HttpLink({uri: `${baseUrl}:${port}/graphql`, fetch })
         });
     }
 
@@ -21,7 +23,7 @@ class GraphQLHeroService {
         return this.client.query({
             query: gql`
               query GetDummy($id: Int!) {
-                hero(id: $id) {
+                dummy(id: $id) {
                   name
                 }
               }

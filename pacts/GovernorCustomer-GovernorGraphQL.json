@@ -1,0 +1,64 @@
+{
+  "consumer": {
+    "name": "GovernorCustomer"
+  },
+  "interactions": [
+    {
+      "description": "a GetDummy Query",
+      "request": {
+        "body": {
+          "operationName": "GetDummy",
+          "query": "\n                    query GetDummy($id: Int!) {\n                        dummy(id: $id) {\n                          name\n                          __typename\n                        }\n                    }",
+          "variables": {
+            "id": 42
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "$.body.query": {
+            "match": "regex",
+            "regex": "\\s*query\\s*GetDummy\\(\\$id:\\s*Int!\\)\\s*\\{\\s*dummy\\(id:\\s*\\$id\\)\\s*\\{\\s*name\\s*__typename\\s*\\}\\s*\\}"
+          }
+        },
+        "method": "POST",
+        "path": "/graphql"
+      },
+      "response": {
+        "body": {
+          "data": {
+            "dummy": {
+              "__typename": "Dummy",
+              "name": "Superman2"
+            }
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "$.body.data.dummy.name": {
+            "match": "type"
+          }
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "11.0.2"
+    },
+    "pactRust": {
+      "ffi": "0.4.0",
+      "models": "1.0.4"
+    },
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  },
+  "provider": {
+    "name": "GovernorGraphQL"
+  }
+}
