@@ -1,13 +1,15 @@
 import {
     ApolloClient,
     InMemoryCache,
-} from "@apollo/client/core/core.cjs";
+    HttpLink,
+} from "@apollo/client";
 import gql from "graphql-tag"
-import Dummy from "./dummy.js";
-import { HttpLink } from "@apollo/client/link/http/http.cjs";
+import Dummy from "./dummy";
 import fetch from 'cross-fetch';
 
 class GraphQLHeroService {
+
+    client;
 
     constructor(baseUrl, port) {
         this.client = new ApolloClient({

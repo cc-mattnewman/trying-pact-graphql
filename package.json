@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "build": "tsc",
     "clean": "rimraf pacts",
     "test": "npm run clean && npm run test:consumer",
-    "test:consumer": "nyc --reporter=text-summary mocha *.spec.js"
+    "test:consumer": "nyc --reporter=text-summary mocha *.spec.ts"
   },
   "keywords": [
     "graphql",
@@ -42,6 +41,7 @@
     "cross-fetch": "^3.1.5",
     "graphql": "^16.6.0",
     "graphql-tools": "^8.3.19",
-    "node-fetch": "^3.3.1"
+    "node-fetch": "^3.3.1",
+    "react": "^18.2.0"
   }
 }

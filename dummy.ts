@@ -4,6 +4,9 @@ class Dummy {
         this.name = name;
     }
 
+    id;
+    name;
+
     static validateName(dummy) {
         if (typeof dummy.name !== 'string') {
             throw new Error(`dummy name must be a string! Invalid value: ${dummy.name}`);

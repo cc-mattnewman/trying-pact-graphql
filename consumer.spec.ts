@@ -1,7 +1,7 @@
-import path from 'path';
-import GraphQLDummyService from './consumer.js';
+import * as path from 'path';
+import GraphQLDummyService from './consumer';
 import * as Pact from '@pact-foundation/pact';
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 const LOG_LEVEL = process.env.LOG_LEVEL || 'TRACE';
 
@@ -13,8 +13,8 @@ describe('DummyService GraphQL API', () => {
         dir: path.resolve(process.cwd(), 'pacts'),
         consumer: 'GovernorCustomer',
         provider: 'GovernorGraphQL',
-        logLevel: LOG_LEVEL,
-      });
+        logLevel: LOG_LEVEL as Pact.LogLevel,
+    });
 
     before(async () => await provider.setup());
     after(async () => await provider.finalize());
@@ -66,15 +66,15 @@ describe('DummyService GraphQL API', () => {
                 .then(() => {
                     provider.verify()
                         .then(
-                            () => done(), 
+                            () => done(),
                             error => {
-                                console.warn( 'provider.verify ERROR', { error } );
+                                console.warn('provider.verify ERROR', { error });
                                 done(error);
                             }
                         )
                 }).catch((reject) => {
                     done(reject);
-                    console.warn( 'WEIRD ERROR, catching', { reject } );
+                    console.warn('WEIRD ERROR, catching', { reject });
                 });
         });
 
